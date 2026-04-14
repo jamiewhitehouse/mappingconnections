@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+display:flex;
+justify-content:center;
+background-color:#edebe4;
+}
+
+/* SIDEBAR MENU */
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+height:100%;
+width:130px;
+background:#2a2929;
+padding-top:40px;
+font-family:Helvetica, sans-serif;
+z-index:9999; /* ADD THIS */
+}
+
+.sidebar a{
+display:block;
+color:rgb(205,200,200);
+padding:14px 20px;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar a:hover{
+background:#a39e9e;
+}
+
+/* FUNDING SECTION */
+
+.funding{
+position:absolute;
+bottom:30px;
+left:0;
+width:100%;
+text-align:center;
+font-size:11px;
+}
+
+.funding img{
+width:90px;
+display:block;
+margin:0 auto 1px auto;
+opacity:0.9;
+}
+
+.funding a{
+color:rgb(205,200,200);
+text-decoration:none;
+padding:2px 0;
+}
+
+.funding a:hover{
+opacity:0.8;
+}
+
+.funding-text{
+display:block;
+font-size:11px;
+margin-top:2px;
+margin-bottom:10px;
+}
+
+/* PAGE CONTENT */
+
+.content{
+margin-left:130px;
+position:relative;
+width:100%;
+max-width:2000px;
+}
+
+/* ---------------------- */
+/* MINI ODD ONE OUT TASK */
+/* ---------------------- */
+
+.mts-container{
+position:absolute;
+left:51.7%;
+top:35.65%;
+width:18%;
+max-width:220px;
+transform:translate(-50%,-50%);
+}
+
+#experiment{
+position:relative;
+width:100%;
+aspect-ratio:1/1;
+border:none;
+background:transparent;
+}
+
+.correctSymbol{
+color:#2ecc71;
+}
+
+.incorrectSymbol{
+color:#e74c3c;
+}
+
+/* grid images */
+
+.choice{
+position:absolute;
+width:38%;
+height:auto;
+cursor:pointer;
+transition:transform 0.15s;
+}
+
+.choice:hover{
+transform:scale(1.05);
+}
+
+/* spaced 2x2 grid */
+
+#choice1{ top:10%; left:10%; }
+#choice2{ top:10%; right:10%; }
+#choice3{ bottom:10%; left:10%; }
+#choice4{ bottom:10%; right:10%; }
+
+/* feedback */
+
+#feedback{
+position:absolute;
+top:40%;
+right:-8px;
+font-size:2.5em;
+}
+
+/* flash animations */
+
+.correctFlash{
+animation: correctFlash 1s;
+}
+
+.incorrectFlash{
+animation: incorrectFlash 1s;
+}
+
+@keyframes correctFlash{
+0%{background:transparent;}
+50%{background:#053d1c;}
+100%{background:transparent;}
+}
+
+@keyframes incorrectFlash{
+0%{background:transparent;}
+50%{background:#9d291c;}
+100%{background:transparent;}
+}
+
+/* ---------------------- */
+/* MOBILE ADJUSTMENTS */
+/* ---------------------- */
+
+@media (max-width:768px){
+
+.sidebar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:auto;
+display:flex;
+justify-content:space-around;
+padding:8px 0;
+}
+
+.sidebar a{
+font-size:14px;
+padding:8px;
+}
+
+.funding{
+display:none;
+}
+
+.content{
+margin-left:0;
+margin-top:45px;
+}
+
+.mts-container{
+left:51.5%;
+top:60.35%;
+width:18%;
+}
+
+}
+
+</style>
+
+<script>
+
+/* ORIGINAL IMAGE HEIGHT */
+const originalImageHeight = 18000;
+
+/* scroll navigation */
+
+function scrollToImagePixel(pixel){
+
+const img = document.querySelector(".content img");
+
+const scale = img.clientHeight / originalImageHeight;
+
+const scrollPosition = img.offsetTop + (pixel * scale);
+
+window.scrollTo({
+top: scrollPosition,
+behavior: "smooth"
+});
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<a href="#" onclick="event.preventDefault(); scrollToImagePixel(0);">Home</a>
+<a href="#" onclick="event.preventDefault(); scrollToImagePixel(1700);">Overview</a>
+<a href="#" onclick="event.preventDefault(); scrollToImagePixel(3300);">Team</a>
+<a href="#" onclick="event.preventDefault(); scrollToImagePixel(5170);">Objectives</a>
+<a href="#" onclick="event.preventDefault(); scrollToImagePixel(7650);">Outputs</a>
+<a href="#" onclick="event.preventDefault(); scrollToImagePixel(8000);">Positions</a>
+
+<div class="funding">
+
+<a href="https://www.ntu.ac.uk/research/groups-and-centres/groups/evolution-and-social-interaction-research-group" target="_blank">
+<img src="images/NTU.png">
+</a>
+
+<a href="https://www.unistra.fr" target="_blank">
+<img src="images/UoS.png">
+</a>
+
+<a href="https://www.silabe.com/en" target="_blank">
+<img src="images/silabe.png">
+</a>
+
+<a href="https://www.leverhulme.ac.uk/" target="_blank">
+<img src="images/leverhulme-logo.png">
+<span class="funding-text">ID: RPG-2026-065</span>
+</a>
+
+</div>
+
+</div>
+
+<!-- PAGE CONTENT -->
+
+<div class="content">
+
+<img src="images/macaque1.png"
+alt="Home"
+usemap="#homemap"
+style="width:100%; height:auto;">
+
+<!-- ODD ONE OUT TASK -->
+
+<div id="mtsTask" class="mts-container">
+
+<div id="experiment">
+
+<img id="choice1" class="choice">
+<img id="choice2" class="choice">
+<img id="choice3" class="choice">
+<img id="choice4" class="choice">
+
+<div id="feedback"></div>
+
+</div>
+
+</div>
+
+<map name="homemap">
+
+<area shape="rect"
+coords="1191,1402,1769,1534"
+href="https://www.leverhulme.ac.uk/"
+target="_blank">
+
+<area shape="rect"
+coords="1795,1401,2280,1552"
+href="https://www.ntu.ac.uk/"
+target="_blank">
+
+<area shape="rect"
+coords="2299,1373,2657,1550"
+href="https://www.unistra.fr/"
+target="_blank">
+
+<area shape="rect"
+coords="2683,1374,2940,1557"
+href="https://www.silabe.com/"
+target="_blank">
+
+<area shape="circle"
+coords="637,3817,254"
+href="https://www.ntu.ac.uk/staff-profiles/social-sciences/jamie-whitehouse"
+target="_blank">
+
+<area shape="circle"
+coords="1444,3827,254"
+href="https://www.silabe.com/en/research/ethology-and-cognitive-neurosciences/dr-sebastien-ballesta"
+target="_blank">
+
+<area shape="circle"
+coords="2268,3830,254"
+href="https://www.ntu.ac.uk/staff-profiles/social-sciences/bridget-waller"
+target="_blank">
+
+
+</map>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+
+<script>
+window.onload = function(){
+imageMapResize();
+}
+</script>
+
+<script>
+document.addEventListener("contextmenu", function(e) {
+e.preventDefault();
+});
+</script>
+
+<!-- ODD ONE OUT SCRIPT -->
+
+<script>
+
+const trials = [
+
+{
+images:[
+"images/mts/same5a.jpg",
+"images/mts/same5b.jpg",
+"images/mts/same5c.jpg",
+"images/mts/diff5.jpg"
+],
+correct:3
+},
+
+{
+images:[
+"images/mts/same6a.jpg",
+"images/mts/diff6.jpg",
+"images/mts/same6b.jpg",
+"images/mts/same6c.jpg"
+],
+correct:1
+},
+
+{
+images:[
+"images/mts/same7a.jpg",
+"images/mts/same7b.jpg",
+"images/mts/diff7.jpg",
+"images/mts/same7c.jpg"
+],
+correct:2
+},
+
+{
+images:[
+"images/mts/diff8.jpg",
+"images/mts/same8a.jpg",
+"images/mts/same8b.jpg",
+"images/mts/same8c.jpg"
+],
+correct:0
+},
+
+{
+images:[
+"images/mts/same1a.jpg",
+"images/mts/same1b.jpg",
+"images/mts/same1c.jpg",
+"images/mts/diff1.jpg"
+],
+correct:3
+},
+
+{
+images:[
+"images/mts/diff2.jpg",
+"images/mts/same2a.jpg",
+"images/mts/same2b.jpg",
+"images/mts/same2c.jpg"
+],
+correct:0
+},
+
+{
+images:[
+"images/mts/same3a.jpg",
+"images/mts/same3b.jpg",
+"images/mts/diff3.jpg",
+"images/mts/same3c.jpg"
+],
+correct:2
+},
+
+{
+images:[
+"images/mts/same4a.jpg",
+"images/mts/diff4.jpg",
+"images/mts/same4b.jpg",
+"images/mts/same4c.jpg"
+],
+correct:1
+}
+
+]
+
+let trialIndex = 0
+
+const choices = [
+document.getElementById("choice1"),
+document.getElementById("choice2"),
+document.getElementById("choice3"),
+document.getElementById("choice4")
+]
+
+const feedback = document.getElementById("feedback")
+
+function loadTrial(){
+
+let trial = trials[trialIndex]
+
+let order = [0,1,2,3].sort(()=>Math.random()-0.5)
+
+choices.forEach((img,i)=>{
+
+let imageIndex = order[i]
+
+img.src = trial.images[imageIndex]
+
+if(imageIndex === trial.correct){
+img.dataset.correct = "true"
+}else{
+img.dataset.correct = "false"
+}
+
+img.classList.remove("correctFlash","incorrectFlash")
+
+})
+
+feedback.innerHTML = ""
+
+}
+
+function choose(e){
+
+let correct = e.target.dataset.correct === "true"
+
+if(correct){
+e.target.classList.add("correctFlash")
+feedback.innerHTML = "✓"
+feedback.className = "correctSymbol"
+}
+else{
+e.target.classList.add("incorrectFlash")
+feedback.innerHTML = "✗"
+feedback.className = "incorrectSymbol"
+}
+
+setTimeout(nextTrial,800)
+
+}
+
+function nextTrial(){
+
+trialIndex++
+
+if(trialIndex >= trials.length){
+trialIndex = 0
+}
+
+loadTrial()
+
+}
+
+choices.forEach(img=>{
+img.onclick = choose
+})
+
+loadTrial()
+
+</script>
+
+</body>
+</html>
