@@ -221,7 +221,7 @@ top:59.8%;
 width:16%;
 }
 
-.watermark{
+  .watermark{
     display:none;
   }
 
@@ -234,21 +234,15 @@ width:16%;
 /* ORIGINAL IMAGE HEIGHT */
 const originalImageHeight = 10705;
 
-/* scroll navigation */
-
 function scrollToImagePixel(pixel){
-
 const img = document.querySelector(".content img");
-
 const scale = img.clientHeight / originalImageHeight;
-
 const scrollPosition = img.offsetTop + (pixel * scale);
 
 window.scrollTo({
 top: scrollPosition,
 behavior: "smooth"
 });
-
 }
 
 </script>
@@ -300,6 +294,9 @@ alt="Home"
 usemap="#homemap"
 style="width:100%; height:auto;">
 
+<!-- ✅ WATERMARK MOVED INSIDE CONTENT -->
+<img src="images/Leverhulme_t.png" class="watermark">
+
 <!-- ODD ONE OUT TASK -->
 
 <div id="mtsTask" class="mts-container">
@@ -318,15 +315,62 @@ style="width:100%; height:auto;">
 </div>
 
 <map name="homemap">
+<area shape="rect" 
+      coords="1715,10356,2640,10539"
+      href="https://www.ntu.ac.uk/study-and-courses/postgraduate/phd/phd-opportunities/find-a-phd-opportunity/projects/social-sciences/linking-facial-behaviour-and-anatomy-to-social-knowledge-in-non-human-primates" 
+      target="_blank" 
+      alt="PhD Advert">
 
-<!-- (unchanged map areas) -->
+<area shape="rect" 
+      coords="1786,1560,1183,1386" 
+      href="https://www.leverhulme.ac.uk/" 
+      target="_blank" 
+      alt="Leverhulme Trust">
+
+<area shape="rect" 
+      coords="2287,1560,1779,1393"
+      href="https://www.ntu.ac.uk/research/groups-and-centres/groups/evolution-and-social-interaction-research-group" 
+      target="_blank" 
+      alt="NTU">
+
+<area shape="rect" 
+      coords="2653,1545,2303,1391" 
+      href="https://www.unistra.fr/fr" 
+      target="_blank" 
+      alt="University of Strasbourg">
+
+<area shape="rect" 
+      coords="2950,1580,2669,1349" 
+      href="https://www.silabe.com/en" 
+      target="_blank" 
+      alt="SILABE">
+
+<area shape="circle" 
+      coords="649,3821,258"
+      href="https://www.ntu.ac.uk/staff-profiles/social-sciences/jamie-whitehouse" 
+      target="_blank" 
+      alt="Jamie Whitehouse">
+
+<area shape="circle" 
+      coords="1434,3821,258"
+      href="https://www.silabe.com/en/research/ethology-and-cognitive-neurosciences/dr-sebastien-ballesta/" 
+      target="_blank" 
+      alt="Sebastien Ballesta">
+
+<area shape="circle" 
+      coords="2276,3830,258"
+      href="https://www.ntu.ac.uk/staff-profiles/social-sciences/bridget-waller" 
+      target="_blank" 
+      alt="Bridget Waller">
+
+
+
+
+
 
 </map>
 
 </div>
-
-<!-- ✅ WATERMARK IMAGE -->
-<img src="images/Leverhulme_t.png" class="watermark">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
 
@@ -342,11 +386,9 @@ e.preventDefault();
 });
 </script>
 
-<!-- ODD ONE OUT SCRIPT -->
-
 <script>
 
-/* (unchanged JS) */
+/* unchanged JS */
 
 const trials = [
 
@@ -451,12 +493,7 @@ choices.forEach((img,i)=>{
 let imageIndex = order[i]
 img.src = trial.images[imageIndex]
 
-if(imageIndex === trial.correct){
-img.dataset.correct = "true"
-}else{
-img.dataset.correct = "false"
-}
-
+img.dataset.correct = (imageIndex === trial.correct) ? "true" : "false"
 img.classList.remove("correctFlash","incorrectFlash")
 })
 
